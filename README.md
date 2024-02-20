@@ -118,7 +118,9 @@ three perspectives: the daily consumption of citizens (decrease) , self producti
 transportation between cities (increase for non-major cities, decrease for major cities).
 
 - For the daily consumption, we calculate the required mask number for a day:
+  
   _req_msk_num = mask_use_rate * (1 * susceptible_num + 2 * infected_num + 0.5 * recovered_num)_
+  
   ($maskuserate \in (0,1]$, describing the ratio of people going outdoors which decrease with the time (due to the
   increase of awareness of COVID-19 for citizens). In each iteration, we subtract the required mask number of every
   _dt_ from the current mask number.
