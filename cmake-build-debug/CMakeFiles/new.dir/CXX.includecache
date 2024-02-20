@@ -1,0 +1,54 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/include/GL/freeglut_std.h
+windows.h
+-
+EGL/egl.h
+-
+GLES/gl.h
+-
+GLES2/gl2.h
+-
+OpenGL/gl.h
+-
+OpenGL/glu.h
+-
+GL/gl.h
+-
+GL/glu.h
+-
+stdlib.h
+-
+
+C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/include/GL/glut.h
+freeglut_std.h
+C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/include/GL/freeglut_std.h
+
+D:/UMJI/2020 Summer/Vg101/project/mask_simulation/new/new/mask_simulation.h
+string
+-
+vector
+-
+GL/glut.h
+D:/UMJI/2020 Summer/Vg101/project/mask_simulation/new/new/GL/glut.h
+
+D:/UMJI/2020 Summer/Vg101/project/mask_simulation/new/new/openGL_basic_functions.cpp
+GL/glut.h
+D:/UMJI/2020 Summer/Vg101/project/mask_simulation/new/new/GL/glut.h
+mask_simulation.h
+D:/UMJI/2020 Summer/Vg101/project/mask_simulation/new/new/mask_simulation.h
+cmath
+-
+ctime
+-
+string
+-
+iostream
+-
+
