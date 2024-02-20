@@ -4,6 +4,12 @@
 Simulation of mask redistribution among the cities facing COVID-19 with a certain mask production capacity. The redistribution of masks is performed based on the seriousness of the infection in each city compared with the current number of masks as well as other geometrical factors (e.g. the distance between cities). The simulation ends either when the
 infected number gets down to 0 or when the ratio of infection is too large in a certain city (reaches the threshold ratio of infection as an input).
 
+#### General usage note ####
+
+1. The program can only be compiled in windows system. Because it includes some header files that only works in windows system, like <windows.h>
+2. The program uses OpenGL to make plotting and animation. So please set up the corresponding OpenGL environment and include <GL/glut.h>.
+3. The program has some mouse-triggered events. So we suggest you to read the guide carefully before entering the main simulation animation. The guide can be found in the left hand side of the login interface.
+
 ## Design
 
 ### Features of the software 
@@ -20,6 +26,16 @@ If the users encounter any problems, they can click the **"i"** (information) bu
 
 ![2](https://github.com/jpangece/Mask_Redistribution_Simulator/assets/122253772/b39b8831-2f0c-426c-b780-9de0a487db52)
 (Figure 2)
+
+#### General Description of Each Code File
+* **mask_simulation.h:**  Define the main data structure (structure city, structure sys...) and include the function list
+* **global_values.cpp:**  initialize the city structure and the key values that will be reused again and again in other code files.
+* **input_functions.cpp:**  functions about the login dialog box and the mouse-triggered events.
+* **sir_functions.cpp:**  functions containing the key algorithm to distribute the mask and evaluate the infected condition
+* **time_initializatoin.cpp:**  initialize the virtual time and some city data (like the complicated outline of each city).
+* **openGL_basic_functions.cpp**:  the functions containing the elements of plotting and animation interface
+* **openGL_structure_functions.cpp:**  the main function to show the user interface and refresh data over time
+* **main.cpp:** The regular main function used in OpenGL
 
 #### 3 Fields of Interface
 
