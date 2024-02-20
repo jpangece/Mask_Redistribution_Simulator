@@ -32,10 +32,11 @@ If the users encounter any problems, they can click the **"i"** (information) bu
   - The map is scaled based on reality (size, shape), with different colors indicating the seriousness of infection in       each city (darker colors represent higher infection rates).
 
   - There are two types of roads among these cities.
-  1) The **red roads** all originate from Xiantao City (major production city) and are used, with animation, when there       are transportations of masks (massive amounts) from Xiantao to respective cities every 6 hours.
+    1) The **red roads** all originate from Xiantao City (major production city) and are used, with animation, when
+       there are transportations of masks (massive amounts) from Xiantao to respective cities every 6 hours.
   
-  2) The **yellow roads** cover two regions in Hubei Province and are used, with animation, when there are                    transportations of masks (small amounts) within these regions every 2 hours.
-     The number of transportations (exports or imports) is shown alongside the roads.
+    2) The **yellow roads** cover two regions in Hubei Province and are used, with animation, when there are                    transportations of masks (small amounts) within these regions every 2 hours. The number of transportations
+       (exports or imports) is shown alongside the roads.
   
     - Additionally, the time and Province name are printed in the bottom side.
 
