@@ -41,12 +41,22 @@ If the users encounter any problems, they can click the **"i"** (information) bu
 3. **Data List**
   - This list shows 4 significant values (total number of citizens, infection number, recovered number, mask number) for     all the cities in Hubei Province.
 
-With time, the components on this interface changes as the simulation progresses. Users can also click the "i" button to access the guide. Additionally, they can click on a city on the map to view the trend of infection in that specific city.
+With time, the components on this interface changes as the simulation progresses. 
+Users can also click the "i" button to access the guide. 
+Additionally, user can click the city on the map to view the trend of infection in specific city.
 
+#### Models for the Simulation : **Revised SIR Model**
+SIR Model is used for the mask simulation interacting with infection numbers.
+(https://scipython.com/book/chapter-8-scipy/additional-examples/the-sir-epidemic-model/)
 
-
-
-
+3 Groups of people are divided for pademic in SIR model.
+  - People susceptible but not yet infected, the number of whom is denoted as S(_t_)
+  - Infectious/infected individuals, the number of whom is denoted as I(_t_)
+  - Individuals who have recovered from the disease and now have immunity, the number of
+    whom is denoted as R(_t_)
+    
+with the differential equation describing how they change:
+![3](https://github.com/jpangece/Mask_Redistribution_Simulator/assets/122253772/961f44b8-6a1f-4df0-b597-083deb70c372)
 
 
 
