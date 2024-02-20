@@ -7,7 +7,8 @@ infected number gets down to 0 or when the ratio of infection is too large in a 
 ## Design
 
 ### Features of the software 
-When staring the program, the user input interface will be exposed (Figure 1)
+When starting the program, 
+the user input interface will be exposed (Figure 1)
 ![1](https://github.com/jpangece/Mask_Redistribution_Simulator/assets/122253772/a45c6d50-c6e3-4c91-ac42-40e40185ef79)
 (Figure 1)
 
