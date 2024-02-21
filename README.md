@@ -1,7 +1,7 @@
 # Mask_Redistribution_Simulator
 
 ## Summary
-Simulation of mask redistribution among the cities facing COVID-19 with a certain mask production capacity. The redistribution of masks is performed based on the seriousness of the infection in each city compared with the current number of masks as well as other geometrical factors (e.g. the distance between cities). The simulation ends either when the
+Simulation of mask redistribution among the cities facing COVID-19 with a certain mask production capacity using C++ and openGL. The redistribution of masks is performed based on the seriousness of the infection in each city compared with the current number of masks as well as other geometrical factors (e.g. the distance between cities). The simulation ends either when the
 infected number gets down to 0 or when the ratio of infection is too large in a certain city (reaches the threshold ratio of infection as an input).
 
 #### General usage note ####
