@@ -10,27 +10,22 @@
 
 int cnt = 0;
 
-
 float all_scale = 1.0f;
 
 int screen_width = 1080 * all_scale;
 int screen_height = 500 * all_scale;
-
 int half_screen_width = screen_width / 2;
 int half_screen_height = screen_height / 2;
 
 //the ratio of the height and the wide
 float radio = screen_width / screen_height;
-
 bool is_transport1 = false;
 bool is_transport2 = false;
 bool is_hour_changed = false;
-
 bool is_inputed_values = false;
 
 //the maximum day number that the function plotting shows
 int history_inf_cache_count = 220;
-
 int current_hour = 0;
 int pre_hour = -1;
 
