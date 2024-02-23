@@ -15,9 +15,9 @@ typedef struct CITY
 
     /*Parameters for plotting*/
 
-	//The origin point of circle
-	int hubei_center_x;
-	int hubei_center_y;
+    //The origin point of circle
+    int hubei_center_x;
+    int hubei_center_y;
 
     //The point where the string is printed
     int string_x;
@@ -45,11 +45,9 @@ typedef struct CITY
     //Only display the integer part of the number!
 
     float hspt_num; //Hospital number
-
     float cur_msk_num; //Current mask number
     float req_msk_num; //Required mask number
     float transport_num;
-
     float eff_rt; //Effective Contact Rate
     float rec_rt; //Recovery rate
 
@@ -58,11 +56,11 @@ typedef struct CITY
     //the mask number in current hour
     int current_hour_mask_num = -1;
     //history data of the infected people
-	std::vector<float> history_inf_nums;
-	//history data of the mask number
-	std::vector<float> history_msk_num;
-	std::vector<std::pair<int, int>> city_outline;
-	std::vector<int> city_outline_index;
+    std::vector<float> history_inf_nums;
+    //history data of the mask number
+    std::vector<float> history_msk_num;
+    std::vector<std::pair<int, int>> city_outline;
+    std::vector<int> city_outline_index;
     float prod_rt; //The increment of masks for every period of time
 } _CITY;
 
@@ -70,11 +68,9 @@ typedef struct SYS
 {
     _CITY *city[13];
     int city_num = 13;
-
 } _SYS;
 
 //Global values
-
 extern bool need_real_hubei_map;
 
 //scaling proportion
@@ -171,7 +167,8 @@ void mask_require(_SYS *sys1);
 //Changes: sys1->city[ALL]->eff_rt (effective contact rate) & rec_rt (recovery rate) updated
 void parameter_renew(_SYS *sys1);
 
-float eff_rt_calculator(float sus_num,float rec_num,float cur_msk_num,float req_msk_num, float radius);
+float eff_rt_calculator(float sus_num,float rec_num,float cur_msk_num,
+			float req_msk_num, float radius);
 
 float rec_rt_calculator(float hspt_num,float inf_num);
 
@@ -200,10 +197,13 @@ GLfloat ParseOpenGLX(int x);
 GLfloat ParseOpenGLY(int y);
 
 //draw the string
-void DrawString(std::string str, int x_offset, int y_offset, void *font);
+void DrawString(std::string str, int x_offset, 
+		int y_offset, void *font);
 
 //draw special string (can be rotated)
-void DrawString2(std::string str, int x_offset, int y_offset, float angle, void *font);
+void DrawString2(std::string str, int x_offset, 
+		 int y_offset, float angle, 
+		 void *font);
 
 int compute_number_level(int num);
 
@@ -224,7 +224,9 @@ void DrawSmallSquare(int x_offset, int y_offset);
 void DrawInfoLogo();
 
 //the road
-void DrawRoad(int start_index, int end_index, int min_diff_val, int max_diff_val, int mode);
+void DrawRoad(int start_index, int end_index, 
+	      int min_diff_val, int max_diff_val, 
+	      int mode);
 
 //drawing
 void ShowCities();
@@ -242,7 +244,6 @@ void ShowDate();
 
 //the digit in the road
 void DrawRoadText(int index,int mode);
-
 
 /*OpenGL structure functions*/
 
