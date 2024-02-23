@@ -4,6 +4,7 @@
 
 extern time_t delta_time;
 //Calculate the virtual time
+
 void ComputeVirtualTime()
 {
     time_t tnow;
@@ -13,7 +14,7 @@ void ComputeVirtualTime()
     real_delta_time = real_delta_time / real_interval * real_interval;
 
     //A real_interval is equivalent to 1 virtual hour
-    delta_time = (real_delta_time) * (3600 / real_interval);
+    delta_time = (real_delta_time) * (3600/real_interval);
     current_virtual_time = virtual_start_time + delta_time;
 }
 
@@ -28,9 +29,7 @@ void InitializeTime()
     sttm.tm_hour = 0;
     sttm.tm_min = 0;
     virtual_start_time = mktime(&sttm);
-
     time(&start_time);
-
     //compute virtual time
     ComputeVirtualTime();
     start_virtual_time = current_virtual_time;
@@ -44,7 +43,6 @@ void InitializeCityDatas()
     {
         auto &city = city_infos[i];
         sys_instance.city[i] = &city;
-
         if (i == major_city_index)
         {
             sys_instance.city[i]->prod_rt = (float)major_city_prod_rt;
