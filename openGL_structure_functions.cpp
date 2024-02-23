@@ -25,17 +25,17 @@ void RefreshDatas()
 {
     Sleep(100);
     //compute the current time
-    int current_hour = (current_virtual_time - start_virtual_time) / 3600;
+    int current_hour = (current_virtual_time-start_virtual_time) / 3600;
     is_hour_changed = current_hour != pre_hour;
     pre_hour = current_hour;
 
     //compute the refreshing period of function plotting
-    int current_cycle_pos = (current_virtual_time - start_virtual_time) / inf_refresh_cycle;
+    int current_cycle_pos = (current_virtual_time-start_virtual_time) / inf_refresh_cycle;
     need_refresh_inf = current_cycle_pos != inf_pre_cycle_pos;
     inf_pre_cycle_pos = current_cycle_pos;
 
-    auto sub_virtual_time1 = (current_virtual_time - start_virtual_time) % (hours_per_trans1 * 3600);
-    auto sub_virtual_time2 = (current_virtual_time - start_virtual_time) % (hours_per_trans2 * 3600);
+    auto sub_virtual_time1 = (current_virtual_time-start_virtual_time) % (hours_per_trans1*3600);
+    auto sub_virtual_time2 = (current_virtual_time-start_virtual_time) % (hours_per_trans2*3600);
     //if it it transmission time
     is_transport1 = current_hour!=0 && sub_virtual_time1 < 3600;
     is_transport2 = current_hour!=0 && sub_virtual_time2 < 3600&&!is_transport1;
@@ -53,7 +53,6 @@ void RefreshDatas()
 
     parameter_renew(&sys_instance);
     sir_renew(&sys_instance, delta_t);
-
     mask_require(&sys_instance);
     mask_change(&sys_instance, delta_t);
 
@@ -63,7 +62,6 @@ void RefreshDatas()
         if (is_hour_changed)
         {
             city.pre_hour_mask_num = city.current_hour_mask_num;
-
             if (city.pre_hour_mask_num == -1)
             {
                 city.pre_hour_mask_num = (int)compute_show_mask_num(city);
@@ -73,21 +71,18 @@ void RefreshDatas()
 
         if (need_refresh_inf)
         {
-			//compute the number of infection in history
+	    //compute the number of infection in history
             city.history_inf_nums.push_back(city.inf_num);
-
             if (city.history_inf_nums.size() >= history_inf_cache_count)
             {
                 city.history_inf_nums.erase(city.history_inf_nums.begin());
             }
-
-			//compute the number of mask in history
-			city.history_msk_num.push_back(compute_show_mask_num(city));
-
-			if (city.history_msk_num.size() >= history_inf_cache_count)
-			{
-				city.history_msk_num.erase(city.history_msk_num.begin());
-			}
+	    //compute the number of mask in history
+	    city.history_msk_num.push_back(compute_show_mask_num(city));
+   	    if (city.history_msk_num.size() >= history_inf_cache_count)
+	    {
+	        city.history_msk_num.erase(city.history_msk_num.begin());
+	    }
         }
     }
 }
@@ -98,34 +93,40 @@ void Show()
     glClear(GL_COLOR_BUFFER_BIT);
     glDisable(GL_DEPTH_TEST);
 
-    glColor3f(100.0f / 255.0f, 129.0f / 255.0f, 192.0f / 255.0f);
-    glRectf(ParseOpenGLX(0), ParseOpenGLY(0), ParseOpenGLX(screen_width), ParseOpenGLY(screen_height));
+    glColor3f(100.0f / 255.0f, 
+	      129.0f / 255.0f, 
+	      192.0f / 255.0f);
+    glRectf(ParseOpenGLX(0), ParseOpenGLY(0), 
+	    ParseOpenGLX(screen_width), ParseOpenGLY(screen_height));
 
     glColor3f(1.0f, 1.0f, 1.0f);
-    glRectf(ParseOpenGLX(10), ParseOpenGLY(10), ParseOpenGLX(690), ParseOpenGLY(40));
-    DrawString("@",20,30,GLUT_BITMAP_HELVETICA_18);
+    glRectf(ParseOpenGLX(10), ParseOpenGLY(10), 
+	    ParseOpenGLX(690), ParseOpenGLY(40));
+    DrawString("@",20,
+	        30,GLUT_BITMAP_HELVETICA_18);
 
     glColor3f(1.0f, 1.0f, 1.0f);
-    glRectf(ParseOpenGLX(10), ParseOpenGLY(45), ParseOpenGLX(690), ParseOpenGLY(490));
+    glRectf(ParseOpenGLX(10), ParseOpenGLY(45), 
+	    ParseOpenGLX(690), ParseOpenGLY(490));
 
     glColor3f(1.0f, 1.0f, 1.0f);
-    glRectf(ParseOpenGLX(700), ParseOpenGLY(10), ParseOpenGLX(1070), ParseOpenGLY(490));
+    glRectf(ParseOpenGLX(700), ParseOpenGLY(10), 
+	    ParseOpenGLX(1070), ParseOpenGLY(490));
 
     DrawInfoLogo();
-
 	if (is_inputed_values)
 	{
 		end_check_result = end_check();
 		if(end_check_result ==-2)
 		{
-				pre_virtual_time = current_virtual_time;
-				ComputeVirtualTime();
-				RefreshDatas();
+			pre_virtual_time = current_virtual_time;
+			ComputeVirtualTime();
+			RefreshDatas();
 		}
 		else if(end_check_result ==-1)
 		{
 			DrawString("There is currently no infected person in Hubei Province. The simulation ends.",\
-					40,30,GLUT_BITMAP_HELVETICA_18);
+			40,30,GLUT_BITMAP_HELVETICA_18);
 		}
 		else
 		{
@@ -142,8 +143,8 @@ void Show()
 	else
 	{
 		DrawInputUI();
-        ShowInfo();
-        DrawString("<--Click to see the guide",info_x+info_R+3,info_y+4,GLUT_BITMAP_HELVETICA_12);
+        	ShowInfo();
+        	DrawString("<--Click to see the guide",info_x+info_R+3,info_y+4,GLUT_BITMAP_HELVETICA_12);
 	}
     glutSwapBuffers();
 }
@@ -155,21 +156,24 @@ void IdleFunc()
 
 int end_check()
 {
-    for(int i=0;i<city_count;++i){
-        if(city_infos[i].inf_num>=(float)threshold_infection_percent/10000*city_infos[i].total_num){
+    for(int i=0;i<city_count;++i)
+    {
+        if(city_infos[i].inf_num >= (float)threshold_infection_percent/10000*city_infos[i].total_num)
+	{
             return i;
         }
     }
-
     bool is_win=true;
-    for (int i=0;i<city_count;++i){
-        if(city_infos[i].inf_num>=1){
+    for (int i=0;i<city_count;++i)
+    {
+        if(city_infos[i].inf_num>=1)
+	{
             is_win=false;
         }
     }
-    if(is_win){
+    if(is_win)
+    {
         return -1;
     }
-
     return -2;
 }
