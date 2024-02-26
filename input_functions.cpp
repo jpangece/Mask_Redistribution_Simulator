@@ -138,11 +138,16 @@ float TriangleArea(std::pair<int, int> p1,
 		   std::pair<int, int> p3)
 {
     float AB, BC, AC, P;
-    AB = sqrt(pow(p2.first - p1.first, 2) + pow(p2.second - p1.second, 2));
-    AC = sqrt(pow(p3.first - p1.first, 2) + pow(p3.second - p1.second, 2));
-    BC = sqrt(pow(p3.first - p2.first, 2) + pow(p3.second - p2.second, 2));
+    AB = sqrt(pow(p2.first - p1.first, 2) + 
+	      pow(p2.second - p1.second, 2));
+    AC = sqrt(pow(p3.first - p1.first, 2) + 
+	      pow(p3.second - p1.second, 2));
+    BC = sqrt(pow(p3.first - p2.first, 2) + 
+	      pow(p3.second - p2.second, 2));
     P = (AB + AC + BC) / 2;
-    return sqrt(P*(P - AB)*(P - AC)*(P - BC));
+    return sqrt(P*(P-AB)*
+	       (P-AC)*
+	       (P-BC));
 }
 
 bool IsInTriangle(std::pair<int, int> A, std::pair<int, int> B, std::pair<int, int> C, std::pair<int, int> D)
@@ -159,36 +164,48 @@ bool IsInTriangle(std::pair<int, int> A, std::pair<int, int> B, std::pair<int, i
 		return false;
 }
 
-//The function for mouse actions in the mode of showing dialog
-void MouseFuncDialog(int button, int state, int x, int y)
-{
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-    {
-        if (dialog_city_index < 0)
-        {
-            for (int i = 0; i < city_count; i++)
-            {
-		const auto& city = city_infos[i];
-		for (int triangle_i = 0 ; triangle_i < city.city_outline_index.size() ; triangle_i += 3)
-			{
-			    auto index_0 = city.city_outline_index[triangle_i];
-			    auto index_1 = city.city_outline_index[triangle_i + 1];
-			    auto index_2 = city.city_outline_index[triangle_i + 2];
-			    if (IsInTriangle(city.city_outline[index_0], city.city_outline[index_1], 
-				city.city_outline[index_2], std::make_pair(x, y)))
-				{
-			  	    dialog_city_index = i;
-				    return;
-				}
-			}
-            }
+// Check if the mouse click is inside any city's outline
+bool IsInsideCityOutline(int x, int y, const CityInfo& city) {
+    for (int triangle_i = 0; triangle_i < city.city_outline_index.size(); triangle_i += 3) {
+        auto index_0 = city.city_outline_index[triangle_i];
+        auto index_1 = city.city_outline_index[triangle_i + 1];
+        auto index_2 = city.city_outline_index[triangle_i + 2];
+        if (IsInTriangle(city.city_outline[index_0], 
+			 city.city_outline[index_1], 
+			 city.city_outline[index_2], 
+			 std::make_pair(x, y))) {
+            return true;
         }
-        else
-        {
+    }
+    return false;
+}
+
+// Find the city index based on mouse click coordinates
+int FindCityIndex(int x, int y, const std::vector<CityInfo>& city_infos) {
+    for (int i = 0; i < city_infos.size(); i++) {
+        const auto& city = city_infos[i];
+        if (IsInsideCityOutline(x, y, city)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Handle mouse click events
+void MouseFuncDialog(int button, int state, int x, int y) {
+    if (button == GLUT_LEFT_BUTTON &&
+	state == GLUT_DOWN) {
+        if (dialog_city_index < 0) 
+	{
+            dialog_city_index = FindCityIndex(x, y, city_infos);
+        } 
+	else 
+	{
             dialog_city_index = -1;
         }
     }
 }
+
 
 void MouseFuncInfo(int button, int state, int x, int y)
 {
@@ -196,7 +213,8 @@ void MouseFuncInfo(int button, int state, int x, int y)
     {
         if(is_info_shown==0)
 	{
-            if(pow(x-info_x,2)+pow(y-info_y,2)<info_R*info_R)
+            if(pow(x-info_x,2)+
+	       pow(y-info_y,2)<info_R*info_R)
 	    {
                 is_info_shown=1;
             }
