@@ -5,8 +5,6 @@ float PI = 3.141592653;
 
 float real_scale = 55.4 * 1000 / 66;
 
-// const int major_city_index = 8;
-
 int hours_per_trans1 = 6;
 int hours_per_trans2 = 2;
 int minor_trans_num = 10000;
