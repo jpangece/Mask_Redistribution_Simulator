@@ -205,7 +205,7 @@ void DrawString(std::string str, int x_offset, int y_offset, void *font);
 
 // Draw special string (can be rotated)
 void DrawString2(std::string str, int x_offset, int y_offset,
-    float angle, void *font);
+    		 float angle, void *font);
 
 int compute_number_level(int num);
 
