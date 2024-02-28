@@ -48,9 +48,9 @@ void KeyboardFuncInputValues(unsigned char key, int x, int y)
             case 2:
                 AddString(other_city_string, other_city_prod_rt, key);
                 break;
-	        case 3:
-		        AddString(threshold_infection_percent_string, threshold_infection_percent, key);
-		        break;
+	    case 3:
+	        AddString(threshold_infection_percent_string, threshold_infection_percent, key);
+	        break;
             default:
                 break;
         }
@@ -66,10 +66,10 @@ void KeyboardFuncInputValues(unsigned char key, int x, int y)
                 break;
             case 2:
                 RemoveStringOneChar(other_city_string, other_city_prod_rt);
-		        break;
-	        case 3:
-		        RemoveStringOneChar(threshold_infection_percent_string, threshold_infection_percent);
-		        break;
+		break;
+	    case 3:
+		RemoveStringOneChar(threshold_infection_percent_string, threshold_infection_percent);
+		break;
             default:
                 break;
         }
@@ -127,17 +127,16 @@ void MouseFuncInputValues(int button, int state, int x, int y)
 	        && y <= ok_button_y2 + input_ui_base_y)
         {
             InitializeTime();
-	        InitializeCityDatas();
-	        InitializeOutlineDatas();
+	    InitializeCityDatas();
+	    InitializeOutlineDatas();
             is_inputed_values = true;
         }
     }
 }
 
-float TriangleArea(
-    std::pair<int, int> p1,
-	std::pair<int, int> p2,
-	std::pair<int, int> p3)
+float TriangleArea(std::pair<int, int> p1,
+    		   std::pair<int, int> p2,
+		   std::pair<int, int> p3)
 {
     float AB, BC, AC, P;
 
@@ -174,10 +173,10 @@ bool IsInsideCityOutline(int x, int y, const CityInfo& city)
         auto index_1 = city.city_outline_index[triangle_i + 1];
         auto index_2 = city.city_outline_index[triangle_i + 2];
         if (IsInTriangle(
-                city.city_outline[index_0],
-			    city.city_outline[index_1],
-			    city.city_outline[index_2],
-			    std::make_pair(x, y)))
+                	 city.city_outline[index_0],
+			 city.city_outline[index_1],
+			 city.city_outline[index_2],
+			 std::make_pair(x, y)))
         {
             return true;
         }
@@ -192,7 +191,6 @@ int FindCityIndex(int x, int y, const std::vector<CityInfo>& city_infos)
     for (int i = 0; i < city_infos.size(); i++)
     {
         const auto& city = city_infos[i];
-
         if (IsInsideCityOutline(x, y, city))
             return i;
     }
@@ -205,11 +203,11 @@ void MouseFuncDialog(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
         if (dialog_city_index < 0)
-	    {
+	{
             dialog_city_index = FindCityIndex(x, y, city_infos);
         }
-	    else
-	    {
+	else
+	{
             dialog_city_index = -1;
         }
     }
@@ -244,6 +242,5 @@ void MouseFunc(int button, int state, int x, int y)
     {
         MouseFuncInputValues(button, state, x, y);
     }
-
     MouseFuncInfo(button, state, x, y);
 }
