@@ -102,20 +102,21 @@ void Show()
     glDisable(GL_DEPTH_TEST);
 
     glColor3f(100.0f / 255.0f, 129.0f / 255.0f, 192.0f / 255.0f);
-    glRectf(
-        ParseOpenGLX(0), ParseOpenGLY(0),
-        ParseOpenGLX(screen_width), ParseOpenGLY(screen_height)
-    );
+    glRectf(ParseOpenGLX(0), ParseOpenGLY(0),
+            ParseOpenGLX(screen_width), ParseOpenGLY(screen_height));
 
     glColor3f(1.0f, 1.0f, 1.0f);
-    glRectf(ParseOpenGLX(10), ParseOpenGLY(10), ParseOpenGLX(690), ParseOpenGLY(40));
+    glRectf(ParseOpenGLX(10), ParseOpenGLY(10), 
+            ParseOpenGLX(690), ParseOpenGLY(40));
     DrawString("@",20, 30,GLUT_BITMAP_HELVETICA_18);
 
     glColor3f(1.0f, 1.0f, 1.0f);
-    glRectf(ParseOpenGLX(10), ParseOpenGLY(45), ParseOpenGLX(690), ParseOpenGLY(490));
+    glRectf(ParseOpenGLX(10), ParseOpenGLY(45), 
+            ParseOpenGLX(690), ParseOpenGLY(490));
 
     glColor3f(1.0f, 1.0f, 1.0f);
-    glRectf(ParseOpenGLX(700), ParseOpenGLY(10), ParseOpenGLX(1070), ParseOpenGLY(490));
+    glRectf(ParseOpenGLX(700), ParseOpenGLY(10), 
+            ParseOpenGLX(1070), ParseOpenGLY(490));
 
     DrawInfoLogo();
 
@@ -133,8 +134,7 @@ void Show()
         {
             DrawString(
                 "There is currently no infected person in Hubei Province. The simulation ends.",
-                40, 30, GLUT_BITMAP_HELVETICA_18
-            );
+                40, 30, GLUT_BITMAP_HELVETICA_18);
         }
         else
         {
@@ -158,7 +158,6 @@ void Show()
         ShowInfo();
         DrawString("<--Click to see the guide", info_x + info_R + 3,info_y + 4, GLUT_BITMAP_HELVETICA_12);
     }
-
     glutSwapBuffers();
 }
 
@@ -186,11 +185,9 @@ int end_check()
             is_win = false;
         }
     }
-
     if(is_win)
     {
         return -1;
     }
-
     return -2;
 }
